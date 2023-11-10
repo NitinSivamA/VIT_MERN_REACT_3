@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import ColorPicker from './components/ColorPicker'; // Adjust the path based on your project structure
 
-function App() {
+const App = () => {
+  const colors = [
+    'red',
+    'blue',
+    'green',
+    'yellow',
+    'purple',
+    'orange',
+    'pink',
+    'brown',
+    'cyan',
+    'magenta',
+    'teal',
+    'indigo',
+    'lime',
+    'maroon',
+    'navy',
+  ];
+
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    document.body.style.backgroundColor = color; // Change background color
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header style={{ backgroundColor: 'lavender', padding: '20px', textAlign: 'center' }}>
+        <h1>Color Picker</h1>
       </header>
+      <main style={{ textAlign: 'center', marginTop: '50px' }}>
+        <ColorPicker colors={colors} onColorSelect={handleColorSelect} />
+        {selectedColor && (
+          <p style={{ color: selectedColor }}>
+            Selected Color: {selectedColor}
+          </p>
+        )}
+      </main>
     </div>
   );
-}
+};
 
 export default App;
+
+
